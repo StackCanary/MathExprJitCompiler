@@ -119,7 +119,7 @@ bool  add_sub(list_t **stream, oper_node_t *oper_node)
 {
 	token_t *token = ((*stream)->data);
 
-	if (token->token == Add || token->token == Sub)
+	if (token->token == Add)
 	{
 		oper_node->oper = token->token;	
 		stream_step(stream);
@@ -211,7 +211,7 @@ bool parse(list_t *list, expr_node_t **expr_node)
 
 	compose(expr(stream, *expr_node) && epsilon(stream));
 
-	free(expr_node);
+	free(*expr_node);
 	
 	return false;
 }

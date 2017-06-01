@@ -5,6 +5,7 @@
 #include "list.h"
 #include "parser.h"
 #include "code.h"
+#include "run.h"
 
 void repl()
 {
@@ -45,6 +46,18 @@ void repl()
 		{
 			printf("Valid Expression!\n");
 			gen_code(expr_node);
+			int size = size_code(expr_node);
+			runnable_t job = make_job(size); 
+			asm_code(expr_node, job);
+
+
+			int ret = run(job);
+
+			free_expr(expr_node);
+
+
+			printf("Result %d\n", ret);
+
 		} else
 		{
 				
@@ -59,7 +72,7 @@ void repl()
 
 }
 
-int main(int argc, char **argv)
+int main(void)
 {
 	repl();
 

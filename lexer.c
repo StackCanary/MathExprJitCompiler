@@ -50,7 +50,7 @@ int lex_number(char **pos)
 	unsigned int len = (*pos) - sav;
 
 	int result = 0;
-	for (int i = 0; i < len; i++)
+	for (unsigned int i = 0; i < len; i++)
 	{
 		int power = pow(10, i);
 
@@ -93,7 +93,7 @@ token_t lex(char **pos)
 			case '(': (*pos)++; return create_token_t(LParen);
 			case ')': (*pos)++; return create_token_t(RParen);
 			case '+': (*pos)++; return create_token_t(Add);
-			case '-': (*pos)++; return create_token_t(Sub);
+	//		case '-': (*pos)++; return create_token_t(Sub);
 			case '*': (*pos)++; return create_token_t(Mul);
 			case '/': (*pos)++; return create_token_t(Div);
 		//	case '%': (*pos)++; return create_token_t(Mod);
@@ -105,7 +105,7 @@ token_t lex(char **pos)
 			return number_token_t(Number, lex_number(pos));
 		}
 
-		(*pos++);
+		(*pos)++;
 		return create_token_t(Undefined);
 	}
 
